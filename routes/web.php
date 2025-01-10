@@ -35,3 +35,13 @@ Route::get('/', function () {
 Route::get('/hello', [\App\Http\Controllers\HelloWorldController::class, 'helloWorld']);
 
 Route::get('/hello/{name?}', [\App\Http\Controllers\HelloWorldController::class, 'hello']);
+
+Route::get('/queries/{event}', function($event) {
+    // $events = \App\Models\Event::all(); // e igual a um SELECT * FROM events
+    // $events = \App\Models\Event::all(['title', 'description']); // igual a  SELECT title, description FROM events
+    // $event = \App\Models\Event::where('id', 1)->get()->first(); // SELECT * FROM events WHERE id = 1
+    $event = \App\Models\Event::find($event); // SELECT * FROM events WHERE id = 1
+
+    return $event;
+
+});
